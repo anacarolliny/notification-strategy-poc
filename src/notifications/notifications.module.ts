@@ -6,6 +6,7 @@ import { EmailStrategy } from './strategies/email.strategy';
 import { InstagramStrategy } from './strategies/instagram.strategy';
 import { TwitterStrategy } from './strategies/twitter.strategy';
 import { WhatsAppStrategy } from './strategies/whatsapp.strategy';
+import { NotificationsInitService } from './notification-init.service';
 
 @Module({
   controllers: [NotificationController],
@@ -16,6 +17,7 @@ import { WhatsAppStrategy } from './strategies/whatsapp.strategy';
     InstagramStrategy,
     TwitterStrategy,
     WhatsAppStrategy,
+    NotificationsInitService,
   ],
 })
 export class NotificationsModule {}

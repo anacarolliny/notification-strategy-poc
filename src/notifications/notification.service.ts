@@ -1,29 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { DiscordStrategy } from './strategies/discord.strategy';
-import { EmailStrategy } from './strategies/email.strategy';
-import { InstagramStrategy } from './strategies/instagram.strategy';
-import { TwitterStrategy } from './strategies/twitter.strategy';
-import { WhatsAppStrategy } from './strategies/whatsapp.strategy';
 import { NotificationStrategy } from './notification.interface';
 
 @Injectable()
 export class NotificationService {
-  private strategies: { [key: string]: NotificationStrategy };
+  private strategies: { [key: string]: NotificationStrategy } = {};
 
-  constructor(
-    private readonly discordStrategy: DiscordStrategy,
-    private readonly emailStrategy: EmailStrategy,
-    private readonly instagramStrategy: InstagramStrategy,
-    private readonly twitterStrategy: TwitterStrategy,
-    private readonly whatsappStrategy: WhatsAppStrategy,
-  ) {
-    this.strategies = {
-      discord: this.discordStrategy,
-      email: this.emailStrategy,
-      instagram: this.instagramStrategy,
-      twitter: this.twitterStrategy,
-      whatsapp: this.whatsappStrategy,
-    };
+  registerStrategy(strategy: NotificationStrategy): void {
+    this.strategies[strategy.identifier] = strategy;
   }
 
   sendNotification(
